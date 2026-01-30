@@ -14,6 +14,6 @@ export const LoadingComponent = ()=>{
             zIndex: 1000
         }
         }>
-         <Loading/>
+         <Loading className=""/>
     </div>)
 }

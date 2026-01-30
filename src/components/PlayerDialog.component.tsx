@@ -6,7 +6,7 @@
 import React, {useState, useEffect } from 'react'
 import {PlayerDialog} from './components.styled/index.styled'
 import {PlayerComponent} from './Player.component'
-import type {MovieTrailerApiResponse} from '../types/MovieTrailerType'
+import type {MovieTrailerApiResponseType} from '../types/MovieTrailerType'
 
 
 
@@ -17,7 +17,7 @@ interface PlayerDialogProps{
 
 export const PlayerDialogComponent:React.FC<React.PropsWithChildren<PlayerDialogProps>> =({movieYoutubeId,setIsPlay})=>{
 
-      const [trailerDetails, setTrailerDetails] = useState<MovieTrailerApiResponse|null>(null)
+      const [trailerDetails, setTrailerDetails] = useState<MovieTrailerApiResponseType|null>(null)
       const [youTubeWatchKey, setYoutubeWatchKey] = useState<string>('')
       const [isOpen, setIsOpen]  = useState<boolean>(true)
       
@@ -46,7 +46,7 @@ export const PlayerDialogComponent:React.FC<React.PropsWithChildren<PlayerDialog
     },[])
 
     useEffect(()=>{  // monitor the id. Because the trailerDetails state updates async
-         setYoutubeWatchKey(trailerDetails?.results[0]?.key)
+          setYoutubeWatchKey(trailerDetails?.results[0]?.key || '')
     },[trailerDetails])
    
     return(<div

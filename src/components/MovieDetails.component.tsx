@@ -40,7 +40,7 @@ export const MovieDetailsComponent = ()=>{
         //  console.log(e.currentTarget instanceof );
          console.log('e',e.target)
   
-           const datatype = e.currentTarget.dataset;
+           // const datatype = e.currentTarget.dataset;
            // console.log('p>>',datatype.movieId)
            // console.log(data)
      
@@ -48,9 +48,9 @@ export const MovieDetailsComponent = ()=>{
      
            addMovieToWatchList({
              dataObj: {
-               id: fetchData?.id | null,
-               backdrop_path: fetchData?.backdrop_path || null,
-               title: fetchData?.title || null
+               id: fetchData?.id || 0,
+               backdrop_path: fetchData?.backdrop_path || undefined,
+               title: fetchData?.title || undefined
           
                //    release_date:
                // or
@@ -165,12 +165,12 @@ export const MovieDetailsComponent = ()=>{
      // fallback  if fetch data is null
      useEffect(()=>{
          console.log('o>',fetchData)
-         console.log('o>',fetchData?.success)
-         if(fetchData?.success === false){
+         // console.log('o>',fetchData?.success)
+         // if(fetchData?.success === false){
             setFetchResourceNotFound(true)
-         }else{
-           setFetchResourceNotFound(false)
-         }
+         // }else{
+         //   setFetchResourceNotFound(false)
+         // }
      },[fetchData])
 
      useEffect(()=>{   // redirect to home page - fetch reso not found.

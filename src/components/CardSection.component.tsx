@@ -3,7 +3,6 @@ import { Card } from "./components.styled/index.styled";
 import { CardSection } from "./components.styled/index.styled";
 import React, { useState, useRef, useEffect } from "react";
 import { addMovieToWatchList } from "../services/watchList.service";
-import type { WatchListType } from "../types/WatchListType";
 import { toast } from "react-toastify";
 import { useGetWatchListMoviesIds } from "../hooks/useGetWatchMoviesIds";
 
@@ -13,17 +12,17 @@ interface CardSectionProps<T> {
   children?: React.ReactNode;
 }
 
-export const CardSectionComponent = <T,>({title,data}: CardSectionProps<T>) => {
+export const CardSectionComponent = <T extends {id?: number; name?: string; backdrop_path?: string;}>({title,data}: CardSectionProps<T>) => {
   //  console.log('p>>',data)
   const navigate = useNavigate();
   const watchListids  = useGetWatchListMoviesIds()
 
-  const svgElement = useRef<SVGElement|null>(null)
+  const svgElement = useRef<SVGSVGElement|null>(null)
    
   useEffect(()=>{
     const svgEle = svgElement.current
     console.log(svgEle?.dataset)
-    const {movieId} = svgEle?.dataset
+    const {movieId} = svgEle?.dataset || {}
      if(svgEle && movieId){
         if(Array.isArray(watchListids) && watchListids.includes(parseInt(movieId))){
               
@@ -64,16 +63,16 @@ export const CardSectionComponent = <T,>({title,data}: CardSectionProps<T>) => {
 
       // find the movie using id
       const findedData = data?.find((cu) => {
-        if (cu?.id === parseInt(datatype?.movieId)) {
+        if (cu?.id === parseInt(datatype?.movieId || '0')) {
           return cu;
         }
       });
 
       addMovieToWatchList({
         dataObj: {
-          id: findedData?.id | null,
-          backdrop_path: findedData?.backdrop_path || null,
-          name: findedData?.name || null,
+          id: findedData?.id || 0,
+          backdrop_path: findedData?.backdrop_path || undefined,
+          title: findedData?.name || undefined,
           //    release_date:
           // or
           // first_air_date:

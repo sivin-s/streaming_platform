@@ -1,6 +1,6 @@
 
 import {LoginForm} from './components.styled/index.styled'
-import React, { useEffect, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import type  {FormErrorsType,FormStateType} from '../types/FormStateAndErrorType'
 import type  {Action} from '../types/FormActionType'
 import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'firebase/auth';
