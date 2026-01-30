@@ -6,13 +6,13 @@ import { addMovieToWatchList } from "../services/watchList.service";
 import { toast } from "react-toastify";
 import { useGetWatchListMoviesIds } from "../hooks/useGetWatchMoviesIds";
 
-interface CardSectionProps<T> {
+interface CardSectionProps {
   title?: string;
-  data?: T[];
+  data?: {id?: number; name?: string; backdrop_path?: string;}[];
   children?: React.ReactNode;
 }
 
-export const CardSectionComponent = <T extends {id?: number; name?: string; backdrop_path?: string;}>({title,data}: CardSectionProps<T>) => {
+export const CardSectionComponent = ({title,data}: CardSectionProps) => {
   //  console.log('p>>',data)
   const navigate = useNavigate();
   const watchListids  = useGetWatchListMoviesIds()
