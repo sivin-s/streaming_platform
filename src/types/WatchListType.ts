@@ -5,7 +5,7 @@ interface WatchListType{
     release_date?: Date;
     title?: string;
     _id?: string;
-    createdAt?: any; // For Firestore server timestamp
+    createdAt?: unknown; // For Firestore server timestamp
 }
 
 export type{

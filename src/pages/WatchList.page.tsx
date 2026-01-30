@@ -31,7 +31,7 @@ export const WatchListPage = () => {
             //    console.log(getMovieWatchListCollection())
             const res = await getMovieWatchListCollection()
             // extracting docs from object
-            const extractedData = res?.map((doc: any) => ({ _id: doc.id, ...doc.data() } as WatchListType))
+            const extractedData = res?.map((doc: {id: string; data: () => WatchListType}) => ({ _id: doc.id, ...doc.data() }))
             setData(extractedData || [])
             //    console.log(res[0].data())
             console.log('D>', data)

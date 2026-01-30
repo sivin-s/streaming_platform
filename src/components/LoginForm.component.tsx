@@ -7,7 +7,7 @@ import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence } f
 import { auth } from '../firebase/firebaseConfig';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
-import {useAuthContext} from '../hooks/useAuthContext'
+// import {useAuthContext} from '../hooks/useAuthContext'
 
 interface LoginComponentProps{
     isSwitch (): void 
@@ -18,7 +18,7 @@ export const LoginComponent:React.FC<React.PropsWithChildren<LoginComponentProps
     const navigate = useNavigate()
 
     // auth consumer hook
-    const {user} = useAuthContext()
+    // const {user} = useAuthContext()
 
 
    
@@ -117,10 +117,10 @@ export const LoginComponent:React.FC<React.PropsWithChildren<LoginComponentProps
                 setTimeout(()=>{
                        navigate('/',{replace:true})
                 },2000)
-                console.log(user)
             }
             return;
-        } catch (err:any) {
+        } catch (err: unknown) {
+             console.log('Login error:', err)
              toast.error(`❌ login failed check the credentials`, {
             position: "top-right",
             autoClose: 4000,

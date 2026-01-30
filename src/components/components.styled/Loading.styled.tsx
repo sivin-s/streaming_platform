@@ -28,7 +28,7 @@ const SvgComponent  = styled.svg.attrs({
 
 
 
-const LoadingComponent = ({className, ...props}: {className?: string; [key: string]: any})=>{
+const LoadingComponent = ({className, ...props}: {className?: string; [key: string]: unknown})=>{
 
     return(
 

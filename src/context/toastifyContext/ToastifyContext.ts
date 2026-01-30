@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 interface ToastifyContextType {
-    showToast: () => any;
+    showToast: () => unknown;
 }
 
 export const ToastifyCreateContext = createContext<ToastifyContextType | undefined>(undefined)

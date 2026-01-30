@@ -225,54 +225,33 @@ const validateValues = (values: FormStateType): FormErrorsType=>{
           const password = state?.values?.password;
 
          if(email && userName && password){
-
           const userCredential = await createUserWithEmailAndPassword(auth, email, password)
-
-        await updateProfile(userCredential.user,{displayName: state?.values?.userName}) 
-
+          await updateProfile(userCredential.user,{displayName: state?.values?.userName}) 
           toast.success(`✅  registered successfully`, {
-
             position: "top-right",
-
             autoClose: 4000,
-
             hideProgressBar: false,
-
             closeOnClick: true,
-
             pauseOnHover: false,
-
             draggable: true,
-
             progress: undefined,
-
             theme: "dark",
-
             // transition:' Flip',
-
-        })
-
+        } as const)
         // reset state
-
-        dispatch({type: 'RESET'})
-
+        dispatch({ type: 'RESET' })
         
-
         // navigator
-
            setTimeout(()=>{
-
                  navigate('/', {replace:true})
-
            },2000)
-
          }
 
          return;
 
-       } catch (err: any) {
+       } catch (err: unknown) {
 
-          console.log(err?.message)
+          console.log('Signup error:', err)
 
          toast.error(`❌ already registered go to login`, {
 
